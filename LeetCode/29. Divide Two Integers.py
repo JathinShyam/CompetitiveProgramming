@@ -34,7 +34,7 @@ class Solution:
         INT_MAX = 2**31 - 1
         INT_MIN = -2**31
 
-        isPositive = -1 if (dividend*divisor)<0 else 1
+        isNegative = -1 if (dividend*divisor)<0 else 1
         quotient = 0
         dividend = abs(dividend)
         divisor = abs(divisor)
@@ -45,7 +45,7 @@ class Solution:
                 count += 1
             quotient += 1<<count
             dividend -= divisor << count
-        result = quotient * isPositive
+        result = quotient * isNegative
         if result > INT_MAX:
             return INT_MAX
         elif result < INT_MIN:
