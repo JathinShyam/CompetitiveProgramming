@@ -31,7 +31,7 @@ All pairs (xi, yi) are distinct.
 """
 
 
-# Union Find Solution
+# Union Find Kruskal's Solution
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         N = len(points)
@@ -66,6 +66,8 @@ class Solution:
     
 
 # Prim's Algorithm
+import heapq
+from typing import List
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         N = len(points)
