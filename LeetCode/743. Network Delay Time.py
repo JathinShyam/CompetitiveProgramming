@@ -31,7 +31,8 @@ ui != vi
 All the pairs (ui, vi) are unique. (i.e., no multiple edges.)
 
 """
-
+from typing import List
+import heapq
 #Dijkstra's Algorithm
 class Solution:
     def networkDelayTime(self, times: List[List[int]], N: int, K: int) -> int:
