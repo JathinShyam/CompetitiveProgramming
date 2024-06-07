@@ -46,3 +46,50 @@ class Solution:
                     break
         result = " ".join(result)
         return result
+    
+
+# Alternate Solution
+class Node:
+    def __init__(self):
+        self.edges = {}
+        self.end_of_word = False
+    
+class Trie:
+    def __init__(self, dictionary):
+        self.root = Node()
+
+        for word in dictionary:
+            self.add(word)
+
+    def add(self, word):
+        node = self.root
+
+        for c in word:
+            if c not in node.edges:
+                node.edges[c] = Node()
+            node = node.edges[c]
+        node.end_of_word = True
+    
+    def find_prefix(self, word):
+        node = self.root
+
+        result = []
+        for c in word:
+            if c not in node.edges:
+                return word
+
+            result.append(c)
+            node = node.edges[c] 
+            if node.end_of_word:
+                return "".join(result)
+        return word
+
+class Solution:
+    def replaceWords(self, dictionary: List[str], sentence: str) -> str:
+        t = Trie(dictionary)
+
+        result = []
+        for word in sentence.split():
+            result.append(t.find_prefix(word))
+        
+        return " ".join(result)
