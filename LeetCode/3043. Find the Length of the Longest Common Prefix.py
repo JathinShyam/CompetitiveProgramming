@@ -54,3 +54,38 @@ class Solution:
                     best = max(best, i)
         
         return best
+
+
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.end_of_word = False
+
+class Solution:
+    def buildTree(sef, words):
+        root = TrieNode()
+        for word in words:
+            node = root
+            for char in word:
+                if char not in node.children:
+                    node.children[char] = TrieNode()
+                node = node.children[char]
+            node.end_of_word = True
+        return root
+
+    def longestCommonPrefix(self, arr1: List[int], arr2: List[int]) -> int:
+        arr1 = [str(x) for x in arr1]
+        arr2 = [str(x) for x in arr2]
+        root = self.buildTree(arr1)
+        best = 0
+        for word in arr2:
+            node = root
+            chars = 0
+            for char in word:
+                if char not in node.children:
+                    break
+                chars += 1
+                node = node.children[char]
+            best = max(best, chars)
+
+        return best
