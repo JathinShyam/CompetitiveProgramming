@@ -35,6 +35,7 @@ At most 1000 calls will be made to book.
 
 from sortedcontainers import SortedList
 
+# O(logn) solution
 class MyCalendar:
     def __init__(self):
         self.events = SortedList()        
@@ -46,6 +47,21 @@ class MyCalendar:
             return False
         self.events.add((start, end))
         return True
+    
+# O(n) solution
+from sortedcontainers import SortedList
+
+class MyCalendar:
+    def __init__(self):
+        self.events = []    
+
+    def book(self, start: int, end: int) -> bool:
+        for s, e in self.events:
+            if end > s and e > start:
+                return False
+        self.events.append((start, end))
+        return True
+
 
 
 # Your MyCalendar object will be instantiated and called as such:
